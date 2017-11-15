@@ -5,11 +5,22 @@ import dummyData from '../helpers/DummyData'
 
 const extractKey = ({id}) => id
 
-export default class DeckList extends Component {
+export default class DeckList extends Component
+{
+    static navigationOptions = {
+        header: null,
+
+    }
+
+    handleOnPressRow = (item) => {
+        // Pushes a new screen onto the stack
+        this.props.navigation.navigate('CardDetailView', {item})
+
+    }
 
     renderItem = ({item}) => {
         return (
-            <View>
+            <TouchableOpacity onPress={ () => this.handleOnPressRow(item)}>
                 <Text style={styles.row}>
                     {item.title}
                 </Text>
@@ -17,7 +28,7 @@ export default class DeckList extends Component {
                 <Text>
                     {item.questions.length}
                 </Text>
-            </View>
+            </TouchableOpacity>
 
 
         )
