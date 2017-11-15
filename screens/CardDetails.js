@@ -11,14 +11,14 @@ class CardDetails extends Component
         this.props.navigation.navigate('AddQuestionView')
     }
 
-    handleOnPressStartQuiz = (questions) => {
-        this.props.navigation.navigate('QuizView', {questions})
+    handleOnPressStartQuiz = (deckObj) => {
+        this.props.navigation.navigate('QuizView', {deckObj})
     }
 
     render() 
     {
         let { item } = this.props.navigation.state.params
-        {alert(JSON.stringify(item))}
+
         return (
           <View style={styles.container}>
               <Text style={styles.title}>{item.title}</Text>
@@ -28,7 +28,7 @@ class CardDetails extends Component
                   <Text style={styles.outlinedButtonText}>Add Card</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(item.questions)}>
+              <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(item)}>
                   <Text style={styles.buttonText}>Start Quiz</Text>
               </TouchableOpacity>
           </View>

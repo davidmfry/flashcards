@@ -25,11 +25,11 @@ class QuizScreen extends Component
 
     componentWillMount ()
     {
-        this.setState({questions: this.props.navigation.state.params})
-        this.setState({totalQuestion: this.props.navigation.state.params.questions.length})
+        this.setState({questions: this.props.navigation.state.params.deckObj.questions})
+        this.setState({totalQuestion: this.props.navigation.state.params.deckObj.questions.length})
     }
 
-    handleOnPressNextQuestion = (qlength) => {
+    handleOnPressNextQuestion = (qlength, deckObj) => {
         if(this.state.currentQuestion + 1 < qlength)
         {
             this.setState({currentQuestion: this.state.currentQuestion + 1})
@@ -38,7 +38,10 @@ class QuizScreen extends Component
 
         if ( this.state.currentQuestion + 1 === qlength)
         {
-            this.props.navigation.navigate('QuizResults', {})
+            deckObj.correct = this.state.correct
+            deckObj.incorrect = this.state.incorrect
+            deckObj.totalQuestion = this.state.totalQuestion
+            this.props.navigation.navigate('QuizResults', {deckObj})
         }
     }
     handleOnPressPrevQuestion = () => {
@@ -61,13 +64,14 @@ class QuizScreen extends Component
     }
 
     handleOnPressCancel = () => {
-        this.props.navigation.navigate('DeckView')
+        this.props.navigation.navigate('DeckView', {})
     }
 
     render()
     {
-        let { questions } = this.props.navigation.state.params
-        {alert(JSON.stringify(questions))}
+        let { deckObj } = this.props.navigation.state.params
+        let { questions } = this.props.navigation.state.params.deckObj
+
         return (
             <View style={styles.container}>
                 <View>
@@ -83,11 +87,11 @@ class QuizScreen extends Component
                     }
 
 
-                    <TouchableOpacity style={[styles.button, styles.correctButton]} onPress={() => this.handleOnPressNextQuestion(questions.length)}>
+                    <TouchableOpacity style={[styles.button, styles.correctButton]} onPress={() => this.handleOnPressCorrectAnswer()}>
                         <Text style={styles.buttonText}>Correct</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.incorrectButton]} onPress={() => this.handleOnPressNextQuestion(questions.length)}>
+                    <TouchableOpacity style={[styles.button, styles.incorrectButton]} onPress={() => this.handleOnPressIncorrectAnswer()}>
                         <Text style={styles.buttonText}>Incorrect</Text>
                     </TouchableOpacity>
 
@@ -95,7 +99,7 @@ class QuizScreen extends Component
                         <Text style={styles.buttonText}>Show Answer</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressNextQuestion(questions.length)}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressNextQuestion(questions.length, deckObj)}>
                         <Text style={styles.buttonText}>Next Question</Text>
                     </TouchableOpacity>
 
