@@ -11,7 +11,11 @@ class QuizScreen extends Component
 
     state = {
         questions: '',
-        currentQuestion: 0
+        currentQuestion: 0,
+        totalQuestion: '',
+        correct: 0,
+        incorrect: 0,
+        showAnswer: false,
     }
 
     static navigationOptions = {
@@ -22,12 +26,19 @@ class QuizScreen extends Component
     componentWillMount ()
     {
         this.setState({questions: this.props.navigation.state.params})
+        this.setState({totalQuestion: this.props.navigation.state.params.questions.length})
     }
 
     handleOnPressNextQuestion = (qlength) => {
         if(this.state.currentQuestion + 1 < qlength)
         {
             this.setState({currentQuestion: this.state.currentQuestion + 1})
+            this.setState({showAnswer: false})
+        }
+
+        if ( this.state.currentQuestion + 1 === qlength)
+        {
+            this.props.navigation.navigate('QuizResults', {})
         }
     }
     handleOnPressPrevQuestion = () => {
@@ -37,7 +48,17 @@ class QuizScreen extends Component
         }
     }
 
+    handleOnPressCorrectAnswer = () => {
+        this.setState({correct: this.state.correct + 1})
+    }
 
+    handleOnPressIncorrectAnswer = () => {
+        this.setState({incorrect: this.state.incorrect + 1})
+    }
+
+    handleOnPressShowAnswer = () => {
+        this.setState({showAnswer: !this.state.showAnswer})
+    }
 
     handleOnPressCancel = () => {
         this.props.navigation.navigate('DeckView')
@@ -46,23 +67,39 @@ class QuizScreen extends Component
     render()
     {
         let { questions } = this.props.navigation.state.params
-
+        {alert(JSON.stringify(questions))}
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>{questions[this.state.currentQuestion].question}</Text>
+                <View>
+                    <Text style={styles.questionCount}>{`${this.state.currentQuestion + 1}/ ${this.state.totalQuestion}`}</Text>
+                </View>
+                <View style={styles.container}>
+                    <Text style={styles.title}>{questions[this.state.currentQuestion].question}</Text>
+                    {this.state.showAnswer
+                        ? <View style={styles.answerContainer}>
+                            <Text style={styles.answerText}>Answer: {questions[this.state.currentQuestion].answer}</Text>
+                        </View>
+                        : null
+                    }
 
 
-                <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressNextQuestion(questions.length)}>
-                    <Text style={styles.buttonText}>Next Question</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, styles.correctButton]} onPress={() => this.handleOnPressNextQuestion(questions.length)}>
+                        <Text style={styles.buttonText}>Correct</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressPrevQuestion()}>
-                    <Text style={styles.buttonText}>Previous Question</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, styles.incorrectButton]} onPress={() => this.handleOnPressNextQuestion(questions.length)}>
+                        <Text style={styles.buttonText}>Incorrect</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressCancel()}>
-                    <Text style={styles.buttonText}>Cancel</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, styles.showAnswer]} onPress={() => this.handleOnPressShowAnswer()}>
+                        <Text style={styles.buttonText}>Show Answer</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressNextQuestion(questions.length)}>
+                        <Text style={styles.buttonText}>Next Question</Text>
+                    </TouchableOpacity>
+
+                </View>
             </View>
 
         );
@@ -72,6 +109,9 @@ class QuizScreen extends Component
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
     title: {
@@ -80,6 +120,9 @@ const styles = StyleSheet.create({
     },
     totalCardText: {
         fontSize: 16,
+    },
+    questionCount: {
+        fontSize: 24,
     },
     button: {
         backgroundColor: 'skyblue',
@@ -104,11 +147,29 @@ const styles = StyleSheet.create({
 
 
     },
+    correctButton: {
+        backgroundColor: '#2ecc71',
+    },
+    incorrectButton: {
+        backgroundColor: '#c0392b',
+    },
+    showAnswer: {
+        backgroundColor: '#f1c40f',
+    },
     buttonText: {
         color: '#fff'
     },
     outlinedButtonText: {
         color: 'skyblue'
     },
+    answerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    answerText: {
+        color:'#2c3e50',
+        fontSize: 16,
+    }
 })
 export default QuizScreen;

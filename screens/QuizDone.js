@@ -1,35 +1,30 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-class CardDetails extends Component 
+class QuizDone extends Component
 {
-    static navigationOptions = {
-        title: 'Card Details',
+    handleOnPressRetakeQuiz = () => {
 
     }
-    handleOnPressAddCard = () => {
-        this.props.navigation.navigate('AddQuestionView')
+
+    handleOnPressReturnToDeck = () => {
+
     }
 
-    handleOnPressStartQuiz = (questions) => {
-        this.props.navigation.navigate('QuizView', {questions})
-    }
-
-    render() 
+    render()
     {
-        let { item } = this.props.navigation.state.params
-        {alert(JSON.stringify(item))}
         return (
           <View style={styles.container}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.totalCardText}>Total Cards: {item.questions.length}</Text>
+              <Text style={styles.title}>You got a 95%</Text>
+              <Text style={styles.totalCardText}>Correct Answers: 5</Text>
+              <Text style={styles.totalCardText}>Incorrect Answers: 1</Text>
 
-              <TouchableOpacity style={styles.buttonOutlined} onPress={() => this.handleOnPressAddCard()}>
-                  <Text style={styles.outlinedButtonText}>Add Card</Text>
+              <TouchableOpacity style={[styles.button, styles.showAnswer]} onPress={() => this.handleOnPressRetakeQuiz()}>
+                  <Text style={styles.buttonText}>Retake Quiz</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(item.questions)}>
-                  <Text style={styles.buttonText}>Start Quiz</Text>
+              <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressReturnToDeck()}>
+                  <Text style={styles.buttonText}>Return to Deck Page</Text>
               </TouchableOpacity>
           </View>
         );
@@ -42,6 +37,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+
     },
     title: {
         fontSize: 24,
@@ -49,6 +45,9 @@ const styles = StyleSheet.create({
     },
     totalCardText: {
         fontSize: 16,
+    },
+    questionCount: {
+        fontSize: 24,
     },
     button: {
         backgroundColor: 'skyblue',
@@ -73,12 +72,30 @@ const styles = StyleSheet.create({
 
 
     },
+    correctButton: {
+        backgroundColor: '#2ecc71',
+    },
+    incorrectButton: {
+        backgroundColor: '#c0392b',
+    },
+    showAnswer: {
+        backgroundColor: '#f1c40f',
+    },
     buttonText: {
         color: '#fff'
     },
     outlinedButtonText: {
         color: 'skyblue'
     },
+    answerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    answerText: {
+        color:'#2c3e50',
+        fontSize: 16,
+    }
 })
 
-export default CardDetails;
+export default QuizDone;

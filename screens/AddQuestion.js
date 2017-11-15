@@ -7,6 +7,12 @@ class AddQuestion extends Component
         title: 'Add Question',
 
     }
+
+    state = {
+        question: '',
+        answer: ''
+    }
+
     render()
     {
         return (
@@ -18,6 +24,17 @@ class AddQuestion extends Component
                   <View style={styles.row}>
                       <TextInput
                           placeholder='Add your question'
+                          value = {this.state.question}
+                          onChangeText={ (question) => this.setState({question})}
+                          returnKeyType='next'
+                          style={styles.textInput}
+
+                      />
+                  </View>
+
+                  <View style={styles.row}>
+                      <TextInput
+                          placeholder='Add the answer'
                           style={styles.textInput}
                       />
                   </View>
