@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import { FlatList, Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { FlatList, Text, StyleSheet, View, TouchableOpacity, AsyncStorage } from 'react-native'
 
 import dummyData from '../helpers/DummyData'
 
 const extractKey = ({id}) => id
 
+
 export default class DeckList extends Component
 {
     static navigationOptions = {
         header: null,
+
+    }
+
+    componentDidMount ()
+    {
 
     }
 

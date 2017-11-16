@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, StyleSheet, Text, TextInput, ScrollView} from 'react-native';
+import { View, StyleSheet, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 
 class AddQuestion extends Component
 {
@@ -38,7 +38,9 @@ class AddQuestion extends Component
                           style={styles.textInput}
                       />
                   </View>
-
+                  <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(item)}>
+                      <Text style={styles.buttonText}>Save</Text>
+                  </TouchableOpacity>
               </ScrollView>
           </View>
         );
@@ -55,6 +57,19 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 45,
         paddingHorizontal: 20,
+    },
+    button: {
+        backgroundColor: 'skyblue',
+        marginTop: 20,
+        padding: 10,
+        paddingLeft: 50,
+        paddingRight: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: '#fff'
     },
 })
 
