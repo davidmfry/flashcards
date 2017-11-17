@@ -1,31 +1,58 @@
 import React, { Component } from 'react'
 import { FlatList, Text, StyleSheet, View, TouchableOpacity, AsyncStorage } from 'react-native'
+import { connect } from 'react-redux'
 
+import { fetchDeckList } from "../actions/action_index";
 import dummyData from '../helpers/DummyData'
+import {DECK_OBJECT} from "../helpers/StorageKeys";
 
 const extractKey = ({id}) => id
 
 
-export default class DeckList extends Component
+class DeckList extends Component
 {
     static navigationOptions = {
         header: null,
 
     }
 
+    state ={
+        deckObj: ''
+    }
+
     componentDidMount ()
     {
-
+        // this.load()
+        this.props.fetchDeckList()
     }
+
+    load = async () => {
+        try {
+            const loadedData = await AsyncStorage.getItem('newKey')
+            let parsedData = JSON.parse(loadedData)
+            if (loadedData !== null)
+            {
+                this.setState({deckObj: parsedData})
+            }
+        }
+        catch (error) {
+            alert(error)
+        }
+    }
+
+
+
+
+
 
     handleOnPressRow = (item) => {
         // Pushes a new screen onto the stack
         this.props.navigation.navigate('CardDetailView', {item})
-
     }
 
     renderItem = ({item}) => {
         return (
+
             <TouchableOpacity onPress={ () => this.handleOnPressRow(item)}>
                 <Text style={styles.row}>
                     {item.title}
@@ -42,13 +69,21 @@ export default class DeckList extends Component
 
     render() {
         return (
+
             <FlatList
                 style={styles.container}
-                data={dummyData}
+                data={this.props.deckList}
                 renderItem={this.renderItem}
                 keyExtractor={extractKey}
             />
         );
+    }
+}
+
+function mapStateToProps(state)
+{
+    return {
+        deckList: state.deckState
     }
 }
 
@@ -73,3 +108,5 @@ const styles = StyleSheet.create({
 
     },
 })
+
+export default connect(mapStateToProps,{fetchDeckList})(DeckList)

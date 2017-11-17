@@ -1,13 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StyleSheet, Text, View } from 'react-native'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 import { Constants } from 'expo';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import { reducers } from "./reducers/reducers";
 
 import DeckList from './screens/DeckList'
 import CardDetails from './screens/CardDetails'
 import AddQuestion from './screens/AddQuestion'
-import QuizScreen from "./screens/QuizScreen";
+import AddDeck from './screens/AddDeck'
+import QuizScreen from "./screens/QuizScreen"
 import QuizDone from "./screens/QuizDone"
+
 
 
 const CardStack = StackNavigator({
@@ -20,15 +25,31 @@ const CardStack = StackNavigator({
     headerMode: 'screen',
 })
 
+const AddDeckStack = StackNavigator({
+    AddDeckView: { screen: AddDeck}
+})
 
+const AppNavigation = TabNavigator({
+    CardsTab: {screen: CardStack},
+    AddDeckTab: {screen: AddDeckStack},
+}, {
+    animationEnabled: true,
+    lazy: true,
+})
+
+const store = createStore(reducers);
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-          {/*<QuizDone />*/}
-          <CardStack/>
-      </View>
+        <Provider store={store}>
+            <View style={styles.container}>
+                {/*<QuizDone />*/}
+                <AppNavigation onNavigationStateChange={ (prevState, currentState) => {
+
+                }}/>
+            </View>
+        </Provider>
     );
   }
 }
