@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { Constants } from 'expo';
-import { createStore } from 'redux';
+import { createStore} from 'redux';
 import { Provider } from 'react-redux'
 import { reducers } from "./reducers/reducers";
 
@@ -13,7 +13,7 @@ import AddDeck from './screens/AddDeck'
 import QuizScreen from "./screens/QuizScreen"
 import QuizDone from "./screens/QuizDone"
 
-
+import {FETCH_DECKLIST} from "./actions/action_index";
 
 const CardStack = StackNavigator({
     DeckView: { screen: DeckList },
@@ -37,7 +37,8 @@ const AppNavigation = TabNavigator({
     lazy: true,
 })
 
-const store = createStore(reducers);
+const store = createStore(reducers)
+
 
 export default class App extends React.Component {
   render() {

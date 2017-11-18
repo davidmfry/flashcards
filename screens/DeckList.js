@@ -23,7 +23,6 @@ class DeckList extends Component
     componentDidMount ()
     {
         // this.load()
-        this.props.fetchDeckList()
     }
 
     load = async () => {
@@ -67,25 +66,30 @@ class DeckList extends Component
         )
     }
 
+    handleOnPressTestState = () => {
+        alert(JSON.stringify(this.props.deckList))
+    }
+
     render() {
         return (
+            <View>
+                {/*<FlatList*/}
+                {/*style={styles.container}*/}
+                {/*data={this.props.deckList}*/}
+                {/*renderItem={this.renderItem}*/}
+                {/*keyExtractor={extractKey}*/}
+                {/*/>*/}
+                <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressTestState()}>
+                    <Text style={styles.buttonText}>Test State</Text>
+                </TouchableOpacity>
+                <Text>{JSON.stringify(this.props.deckList)}</Text>
+            </View>
 
-            <FlatList
-                style={styles.container}
-                data={this.props.deckList}
-                renderItem={this.renderItem}
-                keyExtractor={extractKey}
-            />
         );
     }
 }
 
-function mapStateToProps(state)
-{
-    return {
-        deckList: state.deckState
-    }
-}
+
 
 const styles = StyleSheet.create({
     container: {
@@ -107,6 +111,30 @@ const styles = StyleSheet.create({
         fontSize: 25,
 
     },
+    textInput: {
+        flex: 1,
+        height: 45,
+        paddingHorizontal: 20,
+    },
+    button: {
+        backgroundColor: 'skyblue',
+        marginTop: 20,
+        padding: 10,
+        paddingLeft: 50,
+        paddingRight: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: '#fff'
+    },
 })
 
+function mapStateToProps(state)
+{
+    return {
+        deckList: state.deckState
+    }
+}
 export default connect(mapStateToProps,{fetchDeckList})(DeckList)

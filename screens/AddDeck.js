@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, TextInput, ScrollView, TouchableOpacity, AsyncStorage} from 'react-native';
 
+import { connect } from 'react-redux'
+import {fetchDeckList,addNewDeck} from "../actions/action_index";
+
 import { DECK_OBJECT } from "../helpers/StorageKeys";
 import dummyData from '../helpers/DummyData'
 
@@ -16,46 +19,56 @@ class AddDeck extends Component
         loadedData: ''
     }
 
+    componentWillMount()
+    {
+        this.props.fetchDeckList()
+    }
 
     handleOnPressSave = async (deckName) =>
     {
-        let newData = {
-            id: Math.random(),
-            title: deckName,
-            questions:[]
-        }
+        // let newData = {
+        //     id: Math.random(),
+        //     title: deckName,
+        //     questions:[]
+        // }
+        //
+        // dummyData.push(newData)
+        // let newObject = await AsyncStorage.getItem('newKey')
+        // let parsedData = JSON.parse(newObject)
+        // parsedData.push(newData)
+        //
+        // try {
+        //     await AsyncStorage.setItem('newKey', JSON.stringify(parsedData)).then(this.setState({deckName: ''}))
+        // }
+        // catch (error)
+        // {
+        //     alert(error)
+        // }
+        const data = {id:1, name: 'test1'}
+        this.props.addNewDeck(data)
 
-        dummyData.push(newData)
-        let newObject = await AsyncStorage.getItem('newKey')
-        let parsedData = JSON.parse(newObject)
-        parsedData.push(newData)
-
-        try {
-            await AsyncStorage.setItem('newKey', JSON.stringify(parsedData)).then(this.setState({deckName: ''}))
-        }
-        catch (error)
-        {
-            alert(error)
-        }
 
 
     }
 
     handleOnPressLoad = async () => {
 
-        try {
-            const loadedData = await AsyncStorage.getItem('newKey')
-            if (loadedData !== null)
-            {
-                //alert(JSON.parse(loadedData))
-            }
-        }
-        catch (error) {
-            alert(error)
-        }
+        // try {
+        //     const loadedData = await AsyncStorage.getItem('newKey')
+        //     if (loadedData !== null)
+        //     {
+        //         //alert(JSON.parse(loadedData))
+        //     }
+        // }
+        // catch (error) {
+        //     alert(error)
+        // }
+        //
+        //  alert(JSON.stringify(loadedData))
+        // alert(`From load: ${JSON.stringify(this.state)}`)
 
-        // alert(JSON.stringify(loadedData))
-        alert(`From load: ${JSON.stringify(this.state)}`)
+        alert(JSON.stringify(this.props.deckList))
+
     }
 
     render()
@@ -117,4 +130,10 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AddDeck;
+function mapStateToProps(state)
+{
+    return {
+        deckList: state.deckState
+    }
+}
+export default connect(mapStateToProps,{fetchDeckList, addNewDeck})(AddDeck)
