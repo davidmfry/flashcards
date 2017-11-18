@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FlatList, Text, StyleSheet, View, TouchableOpacity, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchDeckList } from "../actions/action_index";
+import { fetchDeckList, addNewDeck } from "../actions/action_index";
 import dummyData from '../helpers/DummyData'
 import {DECK_OBJECT} from "../helpers/StorageKeys";
 
@@ -20,9 +20,9 @@ class DeckList extends Component
         deckObj: ''
     }
 
-    componentDidMount ()
-    {
+    componentDidMount () {
         // this.load()
+        this.props.dispatch(fetchDeckList())
     }
 
     load = async () => {
@@ -67,24 +67,37 @@ class DeckList extends Component
     }
 
     handleOnPressTestState = () => {
+        this.props.dispatch(fetchDeckList())
         alert(JSON.stringify(this.props.deckList))
+    }
+
+    handleOnPressAdd = () => {
+        console.log(Math.random())
+        const data = {
+            id: Math.random(),
+            title: 'React',
+            questions: [
+                {
+                    question: 'What is React?',
+                    answer: 'A library for managing user interfaces'
+                },
+                {
+                    question: 'Where do you make Ajax requests in React?',
+                    answer: 'The componentDidMount lifecycle event'
+                }
+            ]
+        }
+        this.props.dispatch(addNewDeck(data))
     }
 
     render() {
         return (
-            <View>
-                {/*<FlatList*/}
-                {/*style={styles.container}*/}
-                {/*data={this.props.deckList}*/}
-                {/*renderItem={this.renderItem}*/}
-                {/*keyExtractor={extractKey}*/}
-                {/*/>*/}
-                <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressTestState()}>
-                    <Text style={styles.buttonText}>Test State</Text>
-                </TouchableOpacity>
-                <Text>{JSON.stringify(this.props.deckList)}</Text>
-            </View>
-
+                <FlatList
+                style={styles.container}
+                data={this.props.deckList}
+                renderItem={this.renderItem}
+                keyExtractor={extractKey}
+                />
         );
     }
 }
@@ -137,4 +150,18 @@ function mapStateToProps(state)
         deckList: state.deckState
     }
 }
-export default connect(mapStateToProps,{fetchDeckList})(DeckList)
+export default connect(mapStateToProps)(DeckList)
+
+
+// TODO: Delete before submitting
+// <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressAdd()}>
+// <Text style={styles.buttonText}>Add Data</Text>
+// </TouchableOpacity>
+// <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressTestState()}>
+//     <Text style={styles.buttonText}>Test State</Text>
+//     </TouchableOpacity>
+//     {this.props.deckList.map( (deck) => {
+//     return (
+//     <Text key={deck.id}>{deck.id}</Text>
+//     )
+//     })}

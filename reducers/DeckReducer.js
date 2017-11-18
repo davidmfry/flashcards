@@ -9,8 +9,9 @@ export default function(state = [], action)
         case FETCH_DECKLIST:
             return state
         case ADD_NEW_DECK:
-            state.push(action.payload)
-            return state
+            let newArray = []
+            newArray.push(action.payload)
+            return [...state, ...newArray]
         default:
             return state
     }

@@ -44,7 +44,20 @@ class AddDeck extends Component
         // {
         //     alert(error)
         // }
-        const data = {id:1, name: 'test1'}
+        const data = {
+            id: Math.random(),
+            title: 'React',
+            questions: [
+                {
+                    question: 'What is React?',
+                    answer: 'A library for managing user interfaces'
+                },
+                {
+                    question: 'Where do you make Ajax requests in React?',
+                    answer: 'The componentDidMount lifecycle event'
+                }
+            ]
+        }
         this.props.addNewDeck(data)
 
 

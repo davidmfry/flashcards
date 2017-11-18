@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { Constants } from 'expo';
-import { createStore} from 'redux';
+import { createStore, applyMiddleware} from 'redux';
+import logger from 'redux-logger'
 import { Provider } from 'react-redux'
 import { reducers } from "./reducers/reducers";
 
@@ -37,7 +38,13 @@ const AppNavigation = TabNavigator({
     lazy: true,
 })
 
-const store = createStore(reducers)
+const middleware = [];
+if(process.env.NODE_ENV === 'development')
+{
+    middleware.push(logger)
+}
+
+const store = createStore(reducers, applyMiddleware(...middleware))
 
 
 export default class App extends React.Component {
@@ -46,9 +53,7 @@ export default class App extends React.Component {
         <Provider store={store}>
             <View style={styles.container}>
                 {/*<QuizDone />*/}
-                <AppNavigation onNavigationStateChange={ (prevState, currentState) => {
-
-                }}/>
+                <AppNavigation />
             </View>
         </Provider>
     );
