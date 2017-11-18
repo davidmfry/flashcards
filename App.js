@@ -8,17 +8,17 @@ import { Provider } from 'react-redux'
 import { reducers } from "./reducers/reducers";
 
 import DeckList from './screens/DeckList'
-import CardDetails from './screens/CardDetails'
+import DeckDetails from './screens/DeckDetails'
 import AddQuestion from './screens/AddQuestion'
 import AddDeck from './screens/AddDeck'
 import QuizScreen from "./screens/QuizScreen"
 import QuizDone from "./screens/QuizDone"
 
-import {FETCH_DECKLIST} from "./actions/action_index";
+
 
 const CardStack = StackNavigator({
     DeckView: { screen: DeckList },
-    CardDetailView: { screen: CardDetails},
+    CardDetailView: { screen: DeckDetails},
     AddQuestionView: {screen: AddQuestion},
     QuizView: { screen: QuizScreen},
     QuizResults: { screen: QuizDone},
@@ -52,7 +52,6 @@ export default class App extends React.Component {
     return (
         <Provider store={store}>
             <View style={styles.container}>
-                {/*<QuizDone />*/}
                 <AppNavigation />
             </View>
         </Provider>

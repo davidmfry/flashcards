@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import { connect } from 'react-redux'
+import { addQuestion } from "../actions/action_index";
 
 class AddQuestion extends Component
 {
@@ -13,8 +15,24 @@ class AddQuestion extends Component
         answer: ''
     }
 
+    handleOnPressSave = (id, question, answer) => {
+        console.log(this.props)
+        const questionObj = {
+            question,
+            answer,
+        }
+        let currentDeck = this.props.deckList[id]
+        currentDeck.questions = [...currentDeck.questions, questionObj]
+        console.log(JSON.stringify(currentDeck))
+        this.props.addQuestion(id, currentDeck)
+    }
+
     render()
     {
+        let { id } = this.props.navigation.state.params
+        let { question } = this.state
+        let { answer } = this.state
+
         return (
           <View style={{flex: 1}}>
               <ScrollView
@@ -38,9 +56,10 @@ class AddQuestion extends Component
                           style={styles.textInput}
                       />
                   </View>
-                  <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(item)}>
+                  <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressSave(id, question, answer)}>
                       <Text style={styles.buttonText}>Save</Text>
                   </TouchableOpacity>
+                  <Text>{JSON.stringify(this.props.deckList[id])}</Text>
               </ScrollView>
           </View>
         );
@@ -73,4 +92,11 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AddQuestion;
+function mapStateToProps(state)
+{
+    return {
+        deckList: state.deckState
+    }
+}
+
+export default connect(mapStateToProps,{addQuestion})(AddQuestion)

@@ -1,8 +1,10 @@
-import {FETCH_DECKLIST, ADD_NEW_DECK} from "../actions/action_index";
+import {FETCH_DECKLIST, ADD_NEW_DECK, ADD_QUESTION} from "../actions/action_index";
 
 import dummyData from '../helpers/DummyData'
 
-export default function(state = [], action)
+
+
+export default function(state = dummyData, action)
 {
     switch (action.type)
     {
@@ -12,6 +14,11 @@ export default function(state = [], action)
             let newArray = []
             newArray.push(action.payload)
             return [...state, ...newArray]
+        case ADD_QUESTION:
+            let currentState = state
+            currentState[action.payload.id] = action.payload.newQuestion
+            return [...currentState]
+
         default:
             return state
     }

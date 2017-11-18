@@ -16,7 +16,6 @@ class AddDeck extends Component
 
     state = {
         deckName: '',
-        loadedData: ''
     }
 
     componentWillMount()
@@ -26,39 +25,13 @@ class AddDeck extends Component
 
     handleOnPressSave = async (deckName) =>
     {
-        // let newData = {
-        //     id: Math.random(),
-        //     title: deckName,
-        //     questions:[]
-        // }
-        //
-        // dummyData.push(newData)
-        // let newObject = await AsyncStorage.getItem('newKey')
-        // let parsedData = JSON.parse(newObject)
-        // parsedData.push(newData)
-        //
-        // try {
-        //     await AsyncStorage.setItem('newKey', JSON.stringify(parsedData)).then(this.setState({deckName: ''}))
-        // }
-        // catch (error)
-        // {
-        //     alert(error)
-        // }
         const data = {
-            id: Math.random(),
-            title: 'React',
-            questions: [
-                {
-                    question: 'What is React?',
-                    answer: 'A library for managing user interfaces'
-                },
-                {
-                    question: 'Where do you make Ajax requests in React?',
-                    answer: 'The componentDidMount lifecycle event'
-                }
-            ]
+            id: Math.random() * (100000 - 1) + 1,
+            title: deckName,
+            questions: []
         }
         this.props.addNewDeck(data)
+        this.props.navigation.navigate('CardsTab')
 
 
 
@@ -106,11 +79,7 @@ class AddDeck extends Component
                     <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressSave(this.state.deckName)}>
                         <Text style={styles.buttonText}>Save</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressLoad()}>
-                        <Text style={styles.buttonText}>Load</Text>
-                    </TouchableOpacity>
 
-                    <Text>{this.state.loadedData}</Text>
                 </ScrollView>
             </View>
         );

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { connect } from 'react-redux'
 
 class CardDetails extends Component 
 {
@@ -7,28 +8,29 @@ class CardDetails extends Component
         title: 'Card Details',
 
     }
-    handleOnPressAddCard = () => {
-        this.props.navigation.navigate('AddQuestionView')
+    handleOnPressAddCard = (id) => {
+        this.props.navigation.navigate('AddQuestionView', {id})
     }
 
     handleOnPressStartQuiz = (deckObj) => {
         this.props.navigation.navigate('QuizView', {deckObj})
     }
 
-    render() 
+    render()
     {
-        let { item } = this.props.navigation.state.params
+        let { id } = this.props.navigation.state.params
+        let currentDeck = this.props.deckList[id - 1]
 
         return (
           <View style={styles.container}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.totalCardText}>Total Cards: {item.questions.length}</Text>
+              <Text style={styles.title}>{currentDeck.title}</Text>
+              <Text style={styles.totalCardText}>Total Cards: {currentDeck.questions.length}</Text>
 
-              <TouchableOpacity style={styles.buttonOutlined} onPress={() => this.handleOnPressAddCard()}>
+              <TouchableOpacity style={styles.buttonOutlined} onPress={() => this.handleOnPressAddCard(id - 1)}>
                   <Text style={styles.outlinedButtonText}>Add Card</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(item)}>
+              <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(currentDeck)}>
                   <Text style={styles.buttonText}>Start Quiz</Text>
               </TouchableOpacity>
           </View>
@@ -81,4 +83,11 @@ const styles = StyleSheet.create({
     },
 })
 
-export default CardDetails;
+function mapStateToProps(state)
+{
+    return {
+        deckList: state.deckState
+    }
+}
+
+export default connect(mapStateToProps)(CardDetails);

@@ -1,5 +1,6 @@
 export const FETCH_DECKLIST = 'FETCH_DECKLIST'
 export const ADD_NEW_DECK = 'ADD_NEW_DECK'
+export const ADD_QUESTION = 'ADD_QUESTION'
 
 export function fetchDeckList()
 {
@@ -16,4 +17,13 @@ export function addNewDeck(newDeckItem)
         payload: newDeckItem
     }
 
+}
+
+export function addQuestion (id, newQuestion)
+{
+    const data = {id, newQuestion}
+    return {
+        type: ADD_QUESTION,
+        payload: data
+    }
 }

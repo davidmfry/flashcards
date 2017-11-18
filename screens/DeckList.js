@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FlatList, Text, StyleSheet, View, TouchableOpacity, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchDeckList, addNewDeck } from "../actions/action_index";
+import { fetchDeckList, addNewDeck, addQuestion } from "../actions/action_index";
 import dummyData from '../helpers/DummyData'
 import {DECK_OBJECT} from "../helpers/StorageKeys";
 
@@ -16,43 +16,20 @@ class DeckList extends Component
 
     }
 
-    state ={
-        deckObj: ''
-    }
-
     componentDidMount () {
-        // this.load()
-        this.props.dispatch(fetchDeckList())
+
     }
 
-    load = async () => {
-        try {
-            const loadedData = await AsyncStorage.getItem('newKey')
-            let parsedData = JSON.parse(loadedData)
-            if (loadedData !== null)
-            {
-                this.setState({deckObj: parsedData})
-            }
-        }
-        catch (error) {
-            alert(error)
-        }
-    }
-
-
-
-
-
-
-    handleOnPressRow = (item) => {
+    handleOnPressRow = (id) => {
         // Pushes a new screen onto the stack
-        this.props.navigation.navigate('CardDetailView', {item})
+        this.props.navigation.navigate('CardDetailView', {id})
+
     }
 
     renderItem = ({item}) => {
         return (
 
-            <TouchableOpacity onPress={ () => this.handleOnPressRow(item)}>
+            <TouchableOpacity onPress={ () => this.handleOnPressRow(item.id)}>
                 <Text style={styles.row}>
                     {item.title}
                 </Text>
@@ -64,30 +41,6 @@ class DeckList extends Component
 
 
         )
-    }
-
-    handleOnPressTestState = () => {
-        this.props.dispatch(fetchDeckList())
-        alert(JSON.stringify(this.props.deckList))
-    }
-
-    handleOnPressAdd = () => {
-        console.log(Math.random())
-        const data = {
-            id: Math.random(),
-            title: 'React',
-            questions: [
-                {
-                    question: 'What is React?',
-                    answer: 'A library for managing user interfaces'
-                },
-                {
-                    question: 'Where do you make Ajax requests in React?',
-                    answer: 'The componentDidMount lifecycle event'
-                }
-            ]
-        }
-        this.props.dispatch(addNewDeck(data))
     }
 
     render() {
@@ -150,10 +103,23 @@ function mapStateToProps(state)
         deckList: state.deckState
     }
 }
-export default connect(mapStateToProps)(DeckList)
+export default connect(mapStateToProps, {addQuestion})(DeckList)
 
 
 // TODO: Delete before submitting
+// load = async () => {
+//     try {
+//         const loadedData = await AsyncStorage.getItem('newKey')
+//         let parsedData = JSON.parse(loadedData)
+//         if (loadedData !== null)
+//         {
+//             this.setState({deckObj: parsedData})
+//         }
+//     }
+//     catch (error) {
+//         alert(error)
+//     }
+// }
 // <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressAdd()}>
 // <Text style={styles.buttonText}>Add Data</Text>
 // </TouchableOpacity>
@@ -165,3 +131,27 @@ export default connect(mapStateToProps)(DeckList)
 //     <Text key={deck.id}>{deck.id}</Text>
 //     )
 //     })}
+
+// handleOnPressTestState = () => {
+//     this.props.dispatch(fetchDeckList())
+//     alert(JSON.stringify(this.props.deckList))
+// }
+//
+// handleOnPressAdd = () => {
+//     console.log(Math.random())
+//     const data = {
+//         id: Math.random(),
+//         title: 'React',
+//         questions: [
+//             {
+//                 question: 'What is React?',
+//                 answer: 'A library for managing user interfaces'
+//             },
+//             {
+//                 question: 'Where do you make Ajax requests in React?',
+//                 answer: 'The componentDidMount lifecycle event'
+//             }
+//         ]
+//     }
+//     this.props.dispatch(addNewDeck(data))
+// }
