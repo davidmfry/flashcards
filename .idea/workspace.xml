@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc89d471-738d-4437-974e-bb592dca6848" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/screens/CardDetails.js" afterPath="$PROJECT_DIR$/screens/DeckDetails.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App.js" afterPath="$PROJECT_DIR$/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/action_index.js" afterPath="$PROJECT_DIR$/actions/action_index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reducers/DeckReducer.js" afterPath="$PROJECT_DIR$/reducers/DeckReducer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/AddDeck.js" afterPath="$PROJECT_DIR$/screens/AddDeck.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/AddQuestion.js" afterPath="$PROJECT_DIR$/screens/AddQuestion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/DeckDetails.js" afterPath="$PROJECT_DIR$/screens/DeckDetails.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/DeckList.js" afterPath="$PROJECT_DIR$/screens/DeckList.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screens/QuizDone.js" afterPath="$PROJECT_DIR$/screens/QuizDone.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state relative-caret-position="448">
+              <caret line="28" column="37" lean-forward="true" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -38,8 +38,8 @@
       <file leaf-file-name="DeckList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/DeckList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="-426">
+              <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="62" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -50,8 +50,8 @@
       <file leaf-file-name="DeckDetails.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/screens/DeckDetails.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+            <state relative-caret-position="312">
+              <caret line="27" column="99" lean-forward="false" selection-start-line="27" selection-start-column="99" selection-end-line="27" selection-end-column="99" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="AddQuestion.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/AddQuestion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="49" column="24" lean-forward="true" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+            <state relative-caret-position="416">
+              <caret line="26" column="47" lean-forward="true" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -71,12 +71,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reducers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reducers/reducers.js">
+      <file leaf-file-name="QuizScreen.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/screens/QuizScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="352">
+              <caret line="43" column="61" lean-forward="false" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/reducers/DeckReducer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
-              <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+              <caret line="19" column="108" lean-forward="true" selection-start-line="19" selection-start-column="108" selection-end-line="19" selection-end-column="108" />
               <folding>
                 <element signature="e#0#83#0" expanded="true" />
               </folding>
@@ -106,15 +108,27 @@
       <file leaf-file-name="AddDeck.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/AddDeck.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+            <state relative-caret-position="464">
+              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1511032758000" expanded="true" signature="1433:1440" ph="..." />
-                <marker date="1511032758000" expanded="true" signature="1444:2337" ph="..." />
-                <marker date="1511032758000" expanded="true" signature="1473:1588" ph="..." />
-                <marker date="1511032758000" expanded="false" signature="1652:1664" ph="..." />
-                <marker date="1511032758000" expanded="true" signature="1664:2055" ph="..." />
+                <marker date="1511049950000" expanded="true" signature="1518:1525" ph="..." />
+                <marker date="1511049950000" expanded="true" signature="1529:2422" ph="..." />
+                <marker date="1511049950000" expanded="true" signature="1558:1673" ph="..." />
+                <marker date="1511049950000" expanded="false" signature="1737:1749" ph="..." />
+                <marker date="1511049950000" expanded="true" signature="1749:2140" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuizDone.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/screens/QuizDone.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -149,16 +163,16 @@
         <option value="$PROJECT_DIR$/screens/QuizScreen.js" />
         <option value="$PROJECT_DIR$/screens/CardDetails.js" />
         <option value="$PROJECT_DIR$/helpers/StorageKeys.js" />
-        <option value="$PROJECT_DIR$/screens/QuizDone.js" />
         <option value="$PROJECT_DIR$/store/index.js" />
         <option value="$PROJECT_DIR$/reducers/index.js" />
         <option value="$PROJECT_DIR$/reducers/reducers.js" />
-        <option value="$PROJECT_DIR$/screens/AddDeck.js" />
-        <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/actions/action_index.js" />
-        <option value="$PROJECT_DIR$/reducers/DeckReducer.js" />
+        <option value="$PROJECT_DIR$/screens/QuizDone.js" />
         <option value="$PROJECT_DIR$/screens/DeckList.js" />
+        <option value="$PROJECT_DIR$/App.js" />
+        <option value="$PROJECT_DIR$/reducers/DeckReducer.js" />
         <option value="$PROJECT_DIR$/screens/AddQuestion.js" />
+        <option value="$PROJECT_DIR$/screens/AddDeck.js" />
         <option value="$PROJECT_DIR$/screens/DeckDetails.js" />
       </list>
     </option>
@@ -276,12 +290,12 @@
       <updated>1510503621293</updated>
       <workItem from="1510503623623" duration="8590000" />
       <workItem from="1510675719799" duration="17351000" />
-      <workItem from="1510787237216" duration="38897000" />
+      <workItem from="1510787237216" duration="44331000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64838000" />
+    <option name="totallyTimeSpent" value="70272000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1457" height="1052" extended-state="0" />
@@ -374,31 +388,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/QuizScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="43" column="12" lean-forward="false" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/helpers/StorageKeys.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="39" lean-forward="false" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/QuizDone.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -418,21 +412,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/helpers/DummyData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="45" column="5" lean-forward="true" selection-start-line="1" selection-start-column="3" selection-end-line="45" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/QuizScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="43" column="61" lean-forward="false" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="28" column="37" lean-forward="true" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -447,52 +451,62 @@
     <entry file="file://$PROJECT_DIR$/reducers/DeckReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <caret line="19" column="108" lean-forward="true" selection-start-line="19" selection-start-column="108" selection-end-line="19" selection-end-column="108" />
           <folding>
             <element signature="e#0#83#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/DeckList.js">
+    <entry file="file://$PROJECT_DIR$/screens/AddQuestion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="416">
+          <caret line="26" column="47" lean-forward="true" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/AddDeck.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        <state relative-caret-position="464">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <marker date="1511032758000" expanded="true" signature="1433:1440" ph="..." />
-            <marker date="1511032758000" expanded="true" signature="1444:2337" ph="..." />
-            <marker date="1511032758000" expanded="true" signature="1473:1588" ph="..." />
-            <marker date="1511032758000" expanded="false" signature="1652:1664" ph="..." />
-            <marker date="1511032758000" expanded="true" signature="1664:2055" ph="..." />
+            <marker date="1511049950000" expanded="true" signature="1518:1525" ph="..." />
+            <marker date="1511049950000" expanded="true" signature="1529:2422" ph="..." />
+            <marker date="1511049950000" expanded="true" signature="1558:1673" ph="..." />
+            <marker date="1511049950000" expanded="false" signature="1737:1749" ph="..." />
+            <marker date="1511049950000" expanded="true" signature="1749:2140" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/AddQuestion.js">
+    <entry file="file://$PROJECT_DIR$/screens/QuizDone.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="49" column="24" lean-forward="true" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+        <state relative-caret-position="170">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/DeckList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-426">
+          <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/DeckDetails.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        <state relative-caret-position="312">
+          <caret line="27" column="99" lean-forward="false" selection-start-line="27" selection-start-column="99" selection-end-line="27" selection-end-column="99" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

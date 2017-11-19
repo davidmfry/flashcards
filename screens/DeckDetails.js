@@ -19,20 +19,21 @@ class CardDetails extends Component
     render()
     {
         let { id } = this.props.navigation.state.params
-        let currentDeck = this.props.deckList[id - 1]
+        let index = this.props.deckList.findIndex( deck => deck.id == id )
+        let currentDeck = this.props.deckList[index]
 
         return (
           <View style={styles.container}>
               <Text style={styles.title}>{currentDeck.title}</Text>
               <Text style={styles.totalCardText}>Total Cards: {currentDeck.questions.length}</Text>
-
-              <TouchableOpacity style={styles.buttonOutlined} onPress={() => this.handleOnPressAddCard(id - 1)}>
+              <TouchableOpacity style={styles.buttonOutlined} onPress={() => this.handleOnPressAddCard(id)}>
                   <Text style={styles.outlinedButtonText}>Add Card</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(currentDeck)}>
                   <Text style={styles.buttonText}>Start Quiz</Text>
               </TouchableOpacity>
+              <Text>{JSON.stringify(currentDeck)}</Text>
           </View>
         );
     }

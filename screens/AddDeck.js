@@ -10,7 +10,7 @@ import dummyData from '../helpers/DummyData'
 class AddDeck extends Component
 {
     static navigationOptions = {
-        title: 'Add Question',
+        title: 'Add New Deck',
 
     }
 
@@ -25,13 +25,16 @@ class AddDeck extends Component
 
     handleOnPressSave = async (deckName) =>
     {
+        const id = Math.floor(Math.random() * (100000 - 1) + 1)
         const data = {
-            id: Math.random() * (100000 - 1) + 1,
+            id: id,
             title: deckName,
             questions: []
         }
+
         this.props.addNewDeck(data)
-        this.props.navigation.navigate('CardsTab')
+        this.props.navigation.navigate('DeckDetailView', {id})
+        this.setState({deckName: ''})
 
 
 

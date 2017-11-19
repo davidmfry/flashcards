@@ -20,8 +20,8 @@ class QuizDone extends Component
         this.props.navigation.navigate('QuizView', {deckObj})
     }
 
-    handleOnPressReturnToDeck = (item) => {
-        this.props.navigation.navigate('CardDetailView', {item})
+    handleOnPressReturnToDeck = (id) => {
+        this.props.navigation.navigate('DeckDetailView', {id})
     }
 
     render()
@@ -38,7 +38,7 @@ class QuizDone extends Component
                   <Text style={styles.buttonText}>Retake Quiz</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressReturnToDeck(deckObj)}>
+              <TouchableOpacity style={styles.button} onPress={() => this.handleOnPressReturnToDeck(deckObj.id)}>
                   <Text style={styles.buttonText}>Return to Deck Page</Text>
               </TouchableOpacity>
           </View>

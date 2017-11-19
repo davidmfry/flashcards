@@ -16,7 +16,8 @@ export default function(state = dummyData, action)
             return [...state, ...newArray]
         case ADD_QUESTION:
             let currentState = state
-            currentState[action.payload.id] = action.payload.newQuestion
+            let index = currentState.findIndex( deck => deck.id == action.payload.id)
+            currentState[index].questions = [...currentState[index].questions, ...action.payload.newQuestion]
             return [...currentState]
 
         default:

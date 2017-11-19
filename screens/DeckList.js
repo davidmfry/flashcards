@@ -22,7 +22,7 @@ class DeckList extends Component
 
     handleOnPressRow = (id) => {
         // Pushes a new screen onto the stack
-        this.props.navigation.navigate('CardDetailView', {id})
+        this.props.navigation.navigate('DeckDetailView', {id})
 
     }
 
@@ -35,7 +35,7 @@ class DeckList extends Component
                 </Text>
 
                 <Text>
-                    {item.questions.length}
+                    {`id: ${item.id} Questions: ${item.questions.length}`}
                 </Text>
             </TouchableOpacity>
 

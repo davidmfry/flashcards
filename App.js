@@ -18,7 +18,7 @@ import QuizDone from "./screens/QuizDone"
 
 const CardStack = StackNavigator({
     DeckView: { screen: DeckList },
-    CardDetailView: { screen: DeckDetails},
+    DeckDetailView: { screen: DeckDetails},
     AddQuestionView: {screen: AddQuestion},
     QuizView: { screen: QuizScreen},
     QuizResults: { screen: QuizDone},

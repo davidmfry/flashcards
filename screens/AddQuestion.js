@@ -21,15 +21,17 @@ class AddQuestion extends Component
             question,
             answer,
         }
-        let currentDeck = this.props.deckList[id]
+        let index = this.props.deckList.findIndex( deck => deck.id == id )
+        let currentDeck = this.props.deckList[index]
         currentDeck.questions = [...currentDeck.questions, questionObj]
-        console.log(JSON.stringify(currentDeck))
         this.props.addQuestion(id, currentDeck)
+        this.props.navigation.navigate('DeckDetailView', {id})
     }
 
     render()
     {
         let { id } = this.props.navigation.state.params
+        let index = this.props.deckList.findIndex( deck => deck.id == id )
         let { question } = this.state
         let { answer } = this.state
 
@@ -53,13 +55,14 @@ class AddQuestion extends Component
                   <View style={styles.row}>
                       <TextInput
                           placeholder='Add the answer'
+                          onChangeText={ (answer) => this.setState({answer})}
                           style={styles.textInput}
                       />
                   </View>
                   <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressSave(id, question, answer)}>
                       <Text style={styles.buttonText}>Save</Text>
                   </TouchableOpacity>
-                  <Text>{JSON.stringify(this.props.deckList[id])}</Text>
+                  <Text>{JSON.stringify(this.props.deckList[index])}</Text>
               </ScrollView>
           </View>
         );
