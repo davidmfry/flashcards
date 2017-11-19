@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TextInput, ScrollView, TouchableOpacity, AsyncS
 import { connect } from 'react-redux'
 import {fetchDeckList,addNewDeck} from "../actions/action_index";
 
-import { DECK_OBJECT } from "../helpers/StorageKeys";
+import { DECK_OBJECT } from "../helpers/ConstKeys";
 import dummyData from '../helpers/DummyData'
 
 class AddDeck extends Component

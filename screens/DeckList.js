@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { fetchDeckList, addNewDeck, addQuestion } from "../actions/action_index";
 import dummyData from '../helpers/DummyData'
-import {DECK_OBJECT} from "../helpers/StorageKeys";
+import {DECK_OBJECT} from "../helpers/ConstKeys";
 
 const extractKey = ({id}) => id
 

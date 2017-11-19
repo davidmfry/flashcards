@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-
+import { setLocalNotifications, clearLocalNotifications} from "../helpers/helps";
 
 
 class QuizDone extends Component
@@ -14,6 +14,8 @@ class QuizDone extends Component
         const {deckObj} = this.props.navigation.state.params
         let score = (deckObj.correct / deckObj.totalQuestion) * 100
         this.setState({score:score.toFixed(2)})
+        // Resets the Quiz notifications
+        this.quizFinished()
     }
 
     handleOnPressRetakeQuiz = (deckObj) => {
@@ -22,6 +24,11 @@ class QuizDone extends Component
 
     handleOnPressReturnToDeck = (id) => {
         this.props.navigation.navigate('DeckDetailView', {id})
+    }
+
+    quizFinished = () => {
+        clearLocalNotifications()
+            .then( setLocalNotifications)
     }
 
     render()

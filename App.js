@@ -14,7 +14,8 @@ import AddQuestion from './screens/AddQuestion'
 import AddDeck from './screens/AddDeck'
 import QuizScreen from "./screens/QuizScreen"
 import QuizDone from "./screens/QuizDone"
-
+import {setLocalNotifications, clearLocalNotifications} from "./helpers/helps";
+import { NOTIFICATION_KEY } from "./helpers/ConstKeys";
 
 
 const CardStack = StackNavigator({
@@ -53,7 +54,14 @@ const store = createStore(reducers,
 persistStore(store, { storage: AsyncStorage, whitelist: ['deckState']})
 
 
-export default class App extends React.Component {
+export default class App extends React.Component
+{
+    componentDidMount ()
+    {
+
+        //clearLocalNotifications()
+        setLocalNotifications()
+    }
   render() {
     return (
         <Provider store={store}>
