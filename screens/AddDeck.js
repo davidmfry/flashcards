@@ -23,7 +23,19 @@ class AddDeck extends Component
         this.props.fetchDeckList()
     }
 
-    handleOnPressSave = async (deckName) =>
+    saveDeck = async (deckObject) =>
+    {
+        try {
+            await AsyncStorage.setItem('testItem', deckObject)
+        }
+        catch (error)
+        {
+            alert(error)
+            console.log(error)
+        }
+    }
+
+    handleOnPressSave = (deckName) =>
     {
         const id = Math.floor(Math.random() * (100000 - 1) + 1)
         const data = {
@@ -35,8 +47,6 @@ class AddDeck extends Component
         this.props.addNewDeck(data)
         this.props.navigation.navigate('DeckDetailView', {id})
         this.setState({deckName: ''})
-
-
 
     }
 

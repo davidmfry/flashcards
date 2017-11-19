@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { Constants } from 'expo';
-import { createStore, applyMiddleware} from 'redux';
+import { createStore, applyMiddleware, compose} from 'redux';
+import { persistStore, autoRehydrate} from 'redux-persist'
 import logger from 'redux-logger'
 import { Provider } from 'react-redux'
 import { reducers } from "./reducers/reducers";
@@ -44,7 +45,12 @@ if(process.env.NODE_ENV === 'development')
     middleware.push(logger)
 }
 
-const store = createStore(reducers, applyMiddleware(...middleware))
+const store = createStore(reducers,
+    compose(
+        applyMiddleware(logger)),
+        autoRehydrate()
+    )
+persistStore(store, { storage: AsyncStorage, whitelist: ['deckState']})
 
 
 export default class App extends React.Component {

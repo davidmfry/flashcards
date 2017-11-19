@@ -16,8 +16,9 @@ class DeckList extends Component
 
     }
 
-    componentDidMount () {
-
+    componentDidMount ()
+    {
+        this.props.fetchDeckList()
     }
 
     handleOnPressRow = (id) => {
@@ -37,6 +38,7 @@ class DeckList extends Component
                 <Text>
                     {`id: ${item.id} Questions: ${item.questions.length}`}
                 </Text>
+
             </TouchableOpacity>
 
 
@@ -103,7 +105,7 @@ function mapStateToProps(state)
         deckList: state.deckState
     }
 }
-export default connect(mapStateToProps, {addQuestion})(DeckList)
+export default connect(mapStateToProps, {fetchDeckList})(DeckList)
 
 
 // TODO: Delete before submitting

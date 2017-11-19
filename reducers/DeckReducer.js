@@ -1,4 +1,6 @@
+import { REHYDRATE } from 'redux-persist/constants'
 import {FETCH_DECKLIST, ADD_NEW_DECK, ADD_QUESTION} from "../actions/action_index";
+
 
 import dummyData from '../helpers/DummyData'
 
@@ -8,6 +10,8 @@ export default function(state = dummyData, action)
 {
     switch (action.type)
     {
+        case REHYDRATE:
+            return action.payload.deckState || dummyData
         case FETCH_DECKLIST:
             return state
         case ADD_NEW_DECK:
