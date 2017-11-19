@@ -2,11 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { Constants } from 'expo';
-import { createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose} from 'redux'
 import { persistStore, autoRehydrate} from 'redux-persist'
 import logger from 'redux-logger'
 import { Provider } from 'react-redux'
-import { reducers } from "./reducers/reducers";
+import { reducers } from "./reducers/reducers"
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import DeckList from './screens/DeckList'
 import DeckDetails from './screens/DeckDetails'
@@ -17,6 +18,12 @@ import QuizDone from "./screens/QuizDone"
 import {setLocalNotifications, clearLocalNotifications} from "./helpers/helps";
 import { NOTIFICATION_KEY } from "./helpers/ConstKeys";
 
+// Code from @notbrent @ReactNative Workshop @expo_io at @ReactEurope 2017
+const createTabBarIconWrapper = (
+    TabBarIconComponent,
+    defaultProps
+) => props => <TabBarIconComponent {...defaultProps} color={props.tintColor}/>
+
 
 const CardStack = StackNavigator({
     DeckView: { screen: DeckList },
@@ -26,10 +33,24 @@ const CardStack = StackNavigator({
     QuizResults: { screen: QuizDone},
 }, {
     headerMode: 'screen',
+    navigationOptions: {
+        tabBarIcon: createTabBarIconWrapper(MaterialCommunityIcons, {
+            name: 'cards-outline',
+            size: 35,
+        })
+    }
+
 })
 
 const AddDeckStack = StackNavigator({
     AddDeckView: { screen: AddDeck}
+}, {
+    navigationOptions: {
+        tabBarIcon: createTabBarIconWrapper(MaterialCommunityIcons, {
+            name: 'cards-variant',
+            size: 35,
+        })
+    }
 })
 
 const AppNavigation = TabNavigator({
@@ -37,7 +58,17 @@ const AppNavigation = TabNavigator({
     AddDeckTab: {screen: AddDeckStack},
 }, {
     animationEnabled: true,
-    lazy: true,
+    tabBarOptions: {
+        activeTintColor: '#e74c3c',
+        activeBackgroundColor:'#2c3e50',
+        labelStyle: {
+            fontSize: 16,
+        },
+        style:{
+            height: 60,
+        },
+        allowFontScaling: true,
+    }
 })
 
 const middleware = [];
@@ -80,4 +111,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
 
   },
+    tabBarStyle: {
+      paddingTop: 20,
+    }
 });

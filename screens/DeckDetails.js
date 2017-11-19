@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
+import { Button } from 'react-native-elements'
 
 class CardDetails extends Component 
 {
@@ -26,14 +27,14 @@ class CardDetails extends Component
           <View style={styles.container}>
               <Text style={styles.title}>{currentDeck.title}</Text>
               <Text style={styles.totalCardText}>Total Cards: {currentDeck.questions.length}</Text>
-              <TouchableOpacity style={styles.buttonOutlined} onPress={() => this.handleOnPressAddCard(id)}>
-                  <Text style={styles.outlinedButtonText}>Add Card</Text>
-              </TouchableOpacity>
-
+              <Text style={styles.description}>{currentDeck.description}</Text>
               <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressStartQuiz(currentDeck)}>
                   <Text style={styles.buttonText}>Start Quiz</Text>
               </TouchableOpacity>
-              <Text>{JSON.stringify(currentDeck)}</Text>
+              <TouchableOpacity style={styles.buttonOutlined} onPress={() => this.handleOnPressAddCard(id)}>
+                  <Text style={styles.outlinedButtonText}>Add Card</Text>
+              </TouchableOpacity>
+              {/*<Text>{JSON.stringify(currentDeck)}</Text>*/}
           </View>
         );
     }
@@ -42,45 +43,52 @@ class CardDetails extends Component
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     title: {
-        fontSize: 24,
+        paddingHorizontal: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 36,
         fontWeight: '500'
     },
+    description: {
+        padding: 10,
+    },
     totalCardText: {
-        fontSize: 16,
+        paddingBottom: 3,
+        paddingHorizontal: 10,
+        fontSize: 24,
     },
     button: {
-        backgroundColor: 'skyblue',
+        backgroundColor: '#16a085',
         marginTop: 20,
-        padding: 10,
-        paddingLeft: 50,
-        paddingRight: 50,
+        padding: 30,
+        paddingLeft: 80,
+        paddingRight: 80,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
     },
     buttonOutlined: {
         marginTop: 20,
-        padding: 10,
-        paddingLeft: 50,
-        paddingRight: 50,
+        padding: 30,
+        paddingLeft: 80,
+        paddingRight: 80,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
-        borderColor: 'skyblue',
+        borderColor: '#2c3e50',
         borderWidth: 1,
 
 
     },
     buttonText: {
+        fontSize: 16,
         color: '#fff'
     },
     outlinedButtonText: {
-        color: 'skyblue'
+        fontSize: 16,
+        color: '#2c3e50'
     },
 })
 

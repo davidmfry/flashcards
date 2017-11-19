@@ -16,6 +16,7 @@ class AddDeck extends Component
 
     state = {
         deckName: '',
+        description: ''
     }
 
     componentWillMount()
@@ -35,12 +36,13 @@ class AddDeck extends Component
         }
     }
 
-    handleOnPressSave = (deckName) =>
+    handleOnPressSave = (deckName, description) =>
     {
         const id = Math.floor(Math.random() * (100000 - 1) + 1)
         const data = {
             id: id,
             title: deckName,
+            description,
             questions: []
         }
 
@@ -83,13 +85,24 @@ class AddDeck extends Component
                             placeholder='Add Deck Name'
                             value = {this.state.deckName}
                             onChangeText={ (deckName) => this.setState({deckName})}
+                            returnKeyType='next'
+                            style={styles.textInput}
+
+                        />
+                    </View>
+
+                    <View style={styles.row}>
+                        <TextInput
+                            placeholder='Add Description'
+                            value = {this.state.description}
+                            onChangeText={ (description) => this.setState({description})}
                             returnKeyType='done'
                             style={styles.textInput}
 
                         />
                     </View>
 
-                    <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressSave(this.state.deckName)}>
+                    <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressSave(this.state.deckName, this.state.description)}>
                         <Text style={styles.buttonText}>Save</Text>
                     </TouchableOpacity>
 
@@ -110,8 +123,9 @@ const styles = StyleSheet.create({
         height: 45,
         paddingHorizontal: 20,
     },
+
     button: {
-        backgroundColor: 'skyblue',
+        backgroundColor: '#16a085',
         marginTop: 20,
         padding: 10,
         paddingLeft: 50,

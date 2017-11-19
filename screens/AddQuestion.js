@@ -62,7 +62,7 @@ class AddQuestion extends Component
                   <TouchableOpacity style={styles.button} onPress={ () => this.handleOnPressSave(id, question, answer)}>
                       <Text style={styles.buttonText}>Save</Text>
                   </TouchableOpacity>
-                  <Text>{JSON.stringify(this.props.deckList[index])}</Text>
+                  {/*<Text>{JSON.stringify(this.props.deckList[index])}</Text>*/}
               </ScrollView>
           </View>
         );
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     button: {
-        backgroundColor: 'skyblue',
+        backgroundColor: '#16a085',
         marginTop: 20,
         padding: 10,
         paddingLeft: 50,

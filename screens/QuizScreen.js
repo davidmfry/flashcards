@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { Button } from 'react-native-elements'
 
 class QuizScreen extends Component
 {
@@ -15,6 +16,8 @@ class QuizScreen extends Component
         totalQuestion: '',
         correct: 0,
         incorrect: 0,
+        correctBtnTouch: false,
+        incorrectBtnTouch: false,
         showAnswer: false,
     }
 
@@ -34,6 +37,8 @@ class QuizScreen extends Component
         {
             this.setState({currentQuestion: this.state.currentQuestion + 1})
             this.setState({showAnswer: false})
+            this.setState({correctBtnTouch: false})
+            this.setState({incorrectBtnTouch: false})
         }
 
         if ( this.state.currentQuestion + 1 === qlength)
@@ -53,10 +58,14 @@ class QuizScreen extends Component
 
     handleOnPressCorrectAnswer = () => {
         this.setState({correct: this.state.correct + 1})
+        this.setState({correctBtnTouch: true})
+        this.setState({incorrectBtnTouch: true})
     }
 
     handleOnPressIncorrectAnswer = () => {
         this.setState({incorrect: this.state.incorrect + 1})
+        this.setState({correctBtnTouch: true})
+        this.setState({incorrectBtnTouch: true})
     }
 
     handleOnPressShowAnswer = () => {
@@ -64,7 +73,7 @@ class QuizScreen extends Component
     }
 
     handleOnPressCancel = () => {
-        this.props.navigation.navigate('DeckView', {})
+        this.props.navigation.navigate('DeckView')
     }
 
     render()
@@ -87,11 +96,19 @@ class QuizScreen extends Component
                     }
 
 
-                    <TouchableOpacity style={[styles.button, styles.correctButton]} onPress={() => this.handleOnPressCorrectAnswer()}>
+                    <TouchableOpacity
+                        style={[styles.button, styles.correctButton, this.state.correctBtnTouch ? styles.disabledButton: null]}
+                        onPress={() => this.handleOnPressCorrectAnswer()}
+                        disabled={this.state.correctBtnTouch ? true : false}
+                    >
                         <Text style={styles.buttonText}>Correct</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.incorrectButton]} onPress={() => this.handleOnPressIncorrectAnswer()}>
+                    <TouchableOpacity
+                        style={[styles.button, styles.incorrectButton, this.state.correctBtnTouch ? styles.disabledButton: null]}
+                        onPress={() => this.handleOnPressIncorrectAnswer()}
+                        disabled={this.state.incorrectBtnTouch ? true : false}
+                    >
                         <Text style={styles.buttonText}>Incorrect</Text>
                     </TouchableOpacity>
 
@@ -119,6 +136,7 @@ const styles = StyleSheet.create({
 
     },
     title: {
+        paddingBottom: 20,
         fontSize: 24,
         fontWeight: '500'
     },
@@ -129,7 +147,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
     },
     button: {
-        backgroundColor: 'skyblue',
+        backgroundColor: '#2c3e50',
         marginTop: 20,
         padding: 10,
         paddingLeft: 50,
@@ -138,19 +156,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5,
     },
-    buttonOutlined: {
-        marginTop: 20,
-        padding: 10,
-        paddingLeft: 50,
-        paddingRight: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        borderColor: 'skyblue',
-        borderWidth: 1,
 
-
-    },
     correctButton: {
         backgroundColor: '#2ecc71',
     },
@@ -158,13 +164,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#c0392b',
     },
     showAnswer: {
-        backgroundColor: '#f1c40f',
+        backgroundColor: '#8e44ad',
     },
     buttonText: {
         color: '#fff'
     },
     outlinedButtonText: {
         color: 'skyblue'
+    },
+    disabledButton: {
+        backgroundColor: '#B3B2B3'
     },
     answerContainer: {
         flexDirection: 'row',
