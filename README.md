@@ -6,7 +6,8 @@ The Flash Card App is my final project for section 4 of the Udacity React Nanode
 This app has only been tested on iOS devices. There may be some errors if you are viewing on an android device.
 
 ## How to install
-The master branch Has the most recent build. Run npm install or yarn install. You should use [Expo](https://expo.io) to run the app when the installation is complete.
+The master branch Has the most recent build. Run npm install or yarn install. MAKE SURE TO USE EXPO XDE TO RUN THE PROJECT. YARN / NPM START WILL NOT WORK. You can download [EXPO XDE](https://expo.io) from the expo website. 
+
 
 
 
